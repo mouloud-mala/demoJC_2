@@ -1,0 +1,36 @@
+<form class="article-form" action="post"  [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="lastName">Nom</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName" [(ngModel)]="lastName" [formControl]="lastNameFormControl" placeholder="nom" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="firstName">Prenom</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName" [(ngModel)]="firstName" [formControl]="firstNameFormControl" placeholder="prenom" required>
+    </div>
+  </div>
+  <div class="col-md-6 mb-3">
+    <label for="mail">Adresse mail</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroupPrepend2">@</span>
+      </div>
+      <input type="mail" class="form-control" id="mail" formControlName="mail" [(ngModel)]="mail" [formControl]="mailFormControl" placeholder="Adresse mail" aria-describedby="inputGroupPrepend2" required>
+    </div>
+  </div>
+  <div class="col-md-6 mb-3">
+    <label for="password">Mot De Passe</label>
+    <input type="password" class="form-control" id="password" formControlName="password" [(ngModel)]="password" [formControl]="passwordFormControl" placeholder="Mot de Passe" required>
+  </div>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="city">City</label>
+      <input type="text" class="form-control" id="city" formControlName="city" [(ngModel)]="city" [formControl]="cityFormControl" placeholder="Ville" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="country">State</label>
+      <input type="text" class="form-control" id="country" formControlName="country" [(ngModel)]="country" [formControl]="countryFormControl" placeholder="Pays" required>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">ENREGISTRER</button>
+</form>

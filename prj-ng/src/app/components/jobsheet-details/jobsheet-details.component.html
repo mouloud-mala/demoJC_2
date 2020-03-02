@@ -1,0 +1,21 @@
+<table class="table table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Numero</th>
+    <th scope="col">Titre</th>
+    <!--<th scope="col">Auteur</th>-->
+    <th scope="col">Description</th>
+    <th scope="col">Comptences</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngIf="jobSheet | async as j">
+    <td>{{j.idJobSheet}}</td>
+    <td>{{ j.title }}</td>
+    <!--<td>{{ j.author }}</td>-->
+    <td>{{ j.description }}</td>
+    <td>{{ j.skills }}</td>
+  </tr>
+  </tbody>
+</table>
+<button class=" btn btn-info" routerLink="/jobSheet">Retour</button>

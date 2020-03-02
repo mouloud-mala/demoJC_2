@@ -65,7 +65,7 @@ public class JobSheetController {
         return jobSheetService.getJobSheetById(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, headers = {"Content-type=application/json"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, /*headers = {"Content-type=application/json"},*/ consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void createJobSheet(@Valid @RequestBody JobSheet jobSheet) {
         jobSheetService.createJobSheet(jobSheet);

@@ -1,0 +1,25 @@
+<table class="table table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Numéro</th>
+    <th scope="col">Titre</th>
+    <!--<th scope="col">Auteur</th>-->
+    <th scope="col">Description</th>
+    <th scope="col">Competences</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let j of (jobSheet | async); index as i">
+    <td>{{ j.idJobSheet }}</td>
+    <td>{{ j.title }}</td>
+    <!--<td>{{ j.author.lastName }}</td>-->
+    <td>{{ j.description }}</td>
+    <td>{{ j.skills.name }}</td>
+    <button class="btn btn-success" [routerLink]="['/jobSheet/', j.idJobSheet]">Details</button>
+    <button class="btn btn-secondary" (click)="updateJobsheet(j.idJobSheet)">Editer</button>
+    <button class="btn btn-danger" (click)="onDelete(j.idJobSheet)">Supprimer</button>
+  </tr>
+  </tbody>
+  <button class="btn btn-info" [routerLink]="['/add']">Ajouter une fiche de poste</button>
+  <button class="btn btn-danger" (click)="exportJson()">Generer JSON</button>
+</table>

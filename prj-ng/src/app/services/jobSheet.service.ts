@@ -9,9 +9,9 @@ import {HttpClient} from '@angular/common/http';
 })
 export class JobSheetService implements JobSheetRepository {
 
-  /*private url: string = window['cfgApiBaseUrl'] + '/jobSheet';*/
+  /*private url: string = window['cfgApiBaseUrl'] + '/api/jobSheets';*/
 
-  private url: string = 'http://localhost:8080/jobSheet';
+  private url: string = 'http://localhost:8080/api/jobSheets';
 
   constructor(private http: HttpClient) {
   }

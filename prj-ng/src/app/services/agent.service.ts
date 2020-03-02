@@ -9,9 +9,9 @@ import {AgentRepository} from './repository/agent.repository';
 })
 export class AgentService implements AgentRepository {
 
-  /*private url: string = window['cfgApiBaseUrl'] + '/agent';*/
+  /*private url: string = window['cfgApiBaseUrl'] + '/api/agents';*/
 
-  private url: string = 'http://localhost:8080/agent';
+  private url: string = 'http://localhost:8080/api/agents';
 
   constructor(private http: HttpClient) {
   }

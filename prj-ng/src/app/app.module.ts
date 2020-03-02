@@ -11,10 +11,20 @@ import {JobSheetService} from './services/jobSheet.service';
 import {AgentService} from './services/agent.service';
 import {ManagerService} from './services/manager.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {JobsheetDetailsComponent} from './components/jobsheet-details/jobsheet-details.component';
+import {JobsheetComponent} from './components/jobsheet/jobsheet.component';
+import {JobsheetAddComponent} from './components/jobsheet-add/jobsheet-add.component';
+import {JobsheetEditComponent} from './components/jobsheet-edit/jobsheet-edit.component';
+import {RegisterComponent} from './components/register/register.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    JobsheetComponent,
+    JobsheetDetailsComponent,
+    JobsheetAddComponent,
+    JobsheetEditComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

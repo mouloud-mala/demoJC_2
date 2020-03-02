@@ -1,0 +1,26 @@
+<form class="article-form" (ngSubmit)="onSubmit()">
+  <div class="hidden">
+    <input type="number" placeholder="id" [(ngModel)]="jobSheet.idJobSheet" name="id" class="form-control" id="id">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputTitle">Prénom</label>
+      <input type="text" class="form-control" [(ngModel)]="jobSheet.title" id="inputTitle" name="title">
+    </div>
+    <!--<div class="form-group col-md-6">
+      <label for="inputAuthor">Nom</label>
+      <input type="text" class="form-control" [(ngModel)]="jobSheet.author" id="inputAuthor" name="author">
+    </div>-->
+  </div>
+  <div class="form-group">
+    <label for="inputDescription">Email</label>
+    <input type="email" class="form-control" [(ngModel)]="jobSheet.description" id="inputDescription" name="description">
+  </div>
+  <div class="form-group">
+    <label for="inputSkills">Addresse</label>
+    <input type="text" class="form-control" [(ngModel)]="jobSheet.skills" id="inputSkills" name="skills">
+  </div>
+  <button class="btn btn-primary">Valider</button>
+</form>
+<button class=" btn btn-info" routerLink="/jobSheet">Retour</button>
+

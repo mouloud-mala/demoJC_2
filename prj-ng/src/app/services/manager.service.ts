@@ -9,9 +9,9 @@ import {ManagerRepository} from './repository/manager.repository';
 })
 export class ManagerService implements ManagerRepository {
 
-  /*private url: string = window['cfgApiBaseUrl'] + '/recruiter';*/
+  /*private url: string = window['cfgApiBaseUrl'] + '/api/managers';*/
 
-  private url: string = 'http://localhost:8080/recruiter';
+  private url: string = 'http://localhost:8080/api/managers';
 
   constructor(private http: HttpClient) {
   }
