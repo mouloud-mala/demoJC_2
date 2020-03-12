@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 @Slf4j
 @Service
@@ -22,6 +24,20 @@ public class SkillService {
             return skillsList;
         } else {
             return new ArrayList<>();
+        }
+    }
+
+    public Stream<Skill> getAllSkillsStream() {
+        return skillRepository.getAllSkillsStream();
+    }
+
+    public String getSkillById(long id) throws Exception {
+        log.info("Called for get a skill by id");
+        Optional<Skill> skillById = skillRepository.findById(id);
+        if (skillById.isPresent()) {
+            return skillById.get().getName();
+        } else {
+            throw new Exception("No skill record exist for given id");
         }
     }
 }

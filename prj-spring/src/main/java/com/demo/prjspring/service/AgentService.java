@@ -55,7 +55,7 @@ public class AgentService {
             newAgent.setAddress(agent.getAddress());
             newAgent.setCity(agent.getCity());
             newAgent.setCountry(agent.getCountry());
-            newAgent.setSkillList(agent.getSkillList());
+            /*newAgent.setSkillList(agent.getSkillList());*/
 
             Agent updatedAgent = agentRepository.save(newAgent);
             return ResponseEntity.ok(updatedAgent);

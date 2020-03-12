@@ -14,7 +14,7 @@
     <td>{{ j.title }}</td>
     <!--<td>{{ j.author.lastName }}</td>-->
     <td>{{ j.description }}</td>
-    <td>{{ j.skills.name }}</td>
+    <td><span *ngFor="let skill of (j.skillList); index as k">{{ skill.name }}</span></td>
     <button class="btn btn-success" [routerLink]="['/jobSheet/', j.idJobSheet]">Details</button>
     <button class="btn btn-secondary" (click)="updateJobsheet(j.idJobSheet)">Editer</button>
     <button class="btn btn-danger" (click)="onDelete(j.idJobSheet)">Supprimer</button>

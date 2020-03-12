@@ -16,6 +16,8 @@ import {JobsheetComponent} from './components/jobsheet/jobsheet.component';
 import {JobsheetAddComponent} from './components/jobsheet-add/jobsheet-add.component';
 import {JobsheetEditComponent} from './components/jobsheet-edit/jobsheet-edit.component';
 import {RegisterComponent} from './components/register/register.component';
+import {SkillsRepository} from './services/repository/skills.repository';
+import {SkillsService} from './services/skills.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import {RegisterComponent} from './components/register/register.component';
   providers: [
     {provide: JobSheetRepository, useFactory: (http: HttpClient) => new JobSheetService(http), deps: [HttpClient]},
     {provide: AgentRepository, useFactory: (http: HttpClient) => new AgentService(http), deps: [HttpClient]},
-    {provide: ManagerRepository, useFactory: (http: HttpClient) => new ManagerService(http), deps: [HttpClient]}
+    {provide: ManagerRepository, useFactory: (http: HttpClient) => new ManagerService(http), deps: [HttpClient]},
+    {provide: SkillsRepository, useFactory: (http: HttpClient) => new SkillsService(http), deps: [HttpClient]}
   ],
   bootstrap: [AppComponent]
 })

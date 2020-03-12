@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {SkillsRepository} from './repository/skills.repository';
 import {Skill} from '../models/skill';
+import {JobSheet} from '../models/jobSheet';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,9 @@ export class SkillsService implements SkillsRepository {
 
   all(): Observable<Skill[]> {
     return this.http.get<Skill[]>(this.url);
+  }
+
+  byId(id: string): Observable<Skill> {
+    return this.http.get<Skill>(`${this.url}/${id}`);
   }
 }

@@ -4,10 +4,7 @@ import com.demo.prjspring.pojo.Skill;
 import com.demo.prjspring.service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,10 @@ public class SkillController {
     @GetMapping
     public List<Skill> getAllSkills() {
         return skillService.getAllSkills();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "{id}")
+    public String getSkillById(@PathVariable("id") long id) throws Exception {
+        return skillService.getSkillById(id);
     }
 }

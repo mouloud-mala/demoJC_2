@@ -38,8 +38,15 @@ public class Agent implements Serializable {
 
     private String country;
 
-    @ManyToMany
-    private List<Skill> skillList = new ArrayList<>();
+   /* @ManyToMany
+    private List<Skill> skillList;*/
+
+   /* public List<String> getSkillsList() {
+        if (this.skills.length() > 0) {
+            return Arrays.asList(this.skills.split(","));
+        }
+        return new ArrayList<>();
+    }*/
 
     /*private String skills;
 

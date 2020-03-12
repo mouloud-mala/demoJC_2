@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {JobSheet} from '../../models/jobSheet';
 import {JobSheetRepository} from '../../services/repository/jobSheet.repository';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Skill} from '../../models/skill';
+import {SkillsRepository} from '../../services/repository/skills.repository';
 
 @Component({
   selector: 'app-customer',
@@ -12,10 +14,13 @@ import {Router} from '@angular/router';
 export class JobsheetComponent implements OnInit {
 
   jobSheet: Observable<JobSheet[]>;
+  skill: Observable<Skill>;
 
   constructor(
     private jobSheetService: JobSheetRepository,
-    private router: Router
+    private skillsService: SkillsRepository,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -34,7 +39,11 @@ export class JobsheetComponent implements OnInit {
   }
 
   reloadData() {
-    this.jobSheet = this.jobSheetService.all();
+    this.route.paramMap.subscribe(params => {
+      console.log(params);
+      this.jobSheet = this.jobSheetService.all();
+      this.skill = this.skillsService.byId(params.get('id'));
+    });
   }
 
   exportJson() {

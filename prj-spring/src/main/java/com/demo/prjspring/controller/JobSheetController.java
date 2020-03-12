@@ -2,22 +2,28 @@ package com.demo.prjspring.controller;
 
 import com.demo.prjspring.pojo.JobSheet;
 import com.demo.prjspring.service.JobSheetService;
+import com.demo.prjspring.service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.util.List;
 
 @RestController
+@Transactional
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/jobSheets", produces = MediaType.APPLICATION_JSON_VALUE)
 public class JobSheetController {
 
     @Autowired
     JobSheetService jobSheetService;
+
+    @Autowired
+    SkillService skillService;
 
     @GetMapping
     public List<JobSheet> getAllJobSheets() {
@@ -35,8 +41,7 @@ public class JobSheetController {
         boolean test = true;
         try {
             jobSheetService.writeFileJson();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             test = false;
         }
         return test;
@@ -48,8 +53,7 @@ public class JobSheetController {
         try {
             jobSheetService.readFileJson();
             System.out.println(jobSheetService.readFileJson());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             test = false;
         }
         return test;

@@ -18,7 +18,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString(of = {"lastName", "firstName", "mail", "password","city", "country"})
+@ToString
 public class Manager implements Serializable {
 
     @Id

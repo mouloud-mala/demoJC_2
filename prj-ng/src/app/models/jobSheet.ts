@@ -5,5 +5,5 @@ export class JobSheet {
   title: string;
   /*author: Manager;*/
   description: string;
-  skills: Skill;
+  skillList: Array<Skill>;
 }

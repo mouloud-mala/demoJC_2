@@ -1,10 +1,12 @@
 package com.demo.prjspring.service;
 
 import com.demo.prjspring.pojo.JobSheet;
+import com.demo.prjspring.pojo.Skill;
 import com.demo.prjspring.repository.JobSheetRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +18,17 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 @Service
 public class JobSheetService {
     @Resource
     private JobSheetRepository jobSheetRepository;
+
+    @Autowired
+    SkillService skillService;
 
     public List<JobSheet> getAllJobSheets() {
         log.info("Called for getAllJobSheets ...");
@@ -34,9 +41,7 @@ public class JobSheetService {
     }
 
     /**
-     *
      * PARSE DES DONNEES EN JSON
-     *
      */
 
     public String getAllJobSheetsJson() throws FileNotFoundException {
@@ -60,9 +65,7 @@ public class JobSheetService {
     }
 
     /**
-     *
      * ECRITURE DANS UN FICHIER DU RESULTAT DU PARSE
-     *
      */
     public void writeFileJson() throws FileNotFoundException {
         log.info("Called for write a fileJson ...");
@@ -75,10 +78,9 @@ public class JobSheetService {
         pw.close();
 
     }
+
     /**
-     *
      * LECTURE DANS UN FICHIER DU RESULTAT DU PARSE
-     *
      */
     public List<JobSheet> readFileJson() throws FileNotFoundException {
         log.info("Called for read a fileJson ...");
@@ -95,14 +97,36 @@ public class JobSheetService {
         return result;
     }
 
+
     public JobSheet createJobSheet(JobSheet jobSheet) {
         log.info("Called for add a JobSheet ...");
+        List<Skill> skillList = new ArrayList<>();
+        Skill jobSheetSkill = new Skill();
+        skillList.add(jobSheetSkill);
+        jobSheet.setSkillList(skillList);
+
+        List<Skill> skillFromDB = extractSKill(jobSheet.getSkillList(), skillService.getAllSkillsStream());
+        jobSheet.getSkillList().removeAll(jobSheet.getSkillList());
+        jobSheet.setSkillList(skillFromDB);
+
         return jobSheetRepository.save(jobSheet);
+    }
+
+    // methode pour mettre a jour la liste de competences
+    private List<Skill> extractSKill(List<Skill> skillListFromJobSheet, Stream<Skill> skillStreamFromDB) {
+        // Collect UI role names
+        List<String> uiSkillNames = skillListFromJobSheet.stream()
+                .map(Skill::getName)
+                .collect(Collectors.toCollection(ArrayList::new));
+        // Filter DB roles
+        return skillStreamFromDB
+                .filter(skill -> uiSkillNames.contains(skill.getName()))
+                .collect(Collectors.toList());
     }
 
     public JobSheet getJobSheetById(long id) throws Exception {
 
-        log.info("Called for get a customer by id");
+        log.info("Called for get a jobSheet by id");
         Optional<JobSheet> customerById = jobSheetRepository.findById(id);
         if (customerById.isPresent()) {
             return customerById.get();
@@ -113,8 +137,8 @@ public class JobSheetService {
 
     public ResponseEntity<JobSheet> updateJobSheet(long id, JobSheet jobSheet) {
         log.info("Called for update a JobSheet ...");
-        Optional<JobSheet> optionalCustomer = jobSheetRepository.findById(id);
-        if (optionalCustomer.isPresent()) {
+        Optional<JobSheet> optionalJobSheet = jobSheetRepository.findById(id);
+        if (optionalJobSheet.isPresent()) {
             JobSheet newJobSheet = jobSheet;
             newJobSheet.setIdJobSheet(jobSheet.getIdJobSheet());
             newJobSheet.setTitle(jobSheet.getTitle());

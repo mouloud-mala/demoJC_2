@@ -2,16 +2,32 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputTitle">TItre</label>
-      <input type="text" class="form-control" id="inputTitle" formControlName="title" [(ngModel)]="title" [formControl]="titleFormControl" placeholder="LastName">
+      <input type="text" class="form-control" id="inputTitle" formControlName="title" placeholder="LastName">
     </div>
   </div>
   <div class="form-group">
     <label for="inputDescription">Description</label>
-    <input type="textarea" class="form-control" id="inputDescription" formControlName="description" [(ngModel)]="description" [formControl]="descriptionFormControl" placeholder="contenu poste">
+    <input type="textarea" class="form-control" id="inputDescription" formControlName="description" placeholder="contenu poste">
   </div>
-  <div class="form-group">
-    <label for="inputSkills">Competences recquises</label>
-    <select name="" id="" ngModel="" ngModelOptions=""></select>
+  <div formArrayName="skillList" class="form-row">
+    <div class="col">
+      <h3>Competences recquises</h3>
+    </div>
+    <!--<div class="form-group" *ngFor="let skillControl of getSkills().controls; let i = index" [formGroupName]="i">
+      <select name="" id="" formControlName="skills">
+        <option>-&#45;&#45;</option>
+        <option *ngFor="let s of (listeSkill | async)" class="form-control" [formControlName]="i">{{ s.name }}</option>
+      </select>
+    </div>
+    <button type="button" class="btn btn-success" (click)="onAddSkill()">Ajouter une compétence</button>-->
+
+    <div class="col">
+      <select name="" id="inputSkills" multiple formControlName="skillList" class="form-control" >
+        <option>----</option>
+        <option *ngFor="let s of (listeSkill | async)"  ngValue="skill" value="{{s.idSkill}}">{{ s.name }}</option>
+      </select>
+    </div>
+
   </div>
   <!--<div class="form-group">
     <label for="inputSkills">Competences</label>
