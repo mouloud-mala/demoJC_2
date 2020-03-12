@@ -1,17 +1,30 @@
 package com.demo.prjspring.controller;
 
-import com.demo.prjspring.pojo.JobSheet;
-import com.demo.prjspring.service.JobSheetService;
-import com.demo.prjspring.service.SkillService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import java.io.FileNotFoundException;
+import java.util.List;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.io.FileNotFoundException;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.prjspring.adapter.JobSheetAdapter;
+import com.demo.prjspring.pojo.JobSheet;
+import com.demo.prjspring.service.JobSheetService;
+import com.demo.prjspring.service.SkillService;
 
 @RestController
 @Transactional
@@ -21,6 +34,9 @@ public class JobSheetController {
 
     @Autowired
     JobSheetService jobSheetService;
+    
+    @Autowired
+    JobSheetAdapter adapter;
 
     @Autowired
     SkillService skillService;
@@ -72,7 +88,7 @@ public class JobSheetController {
     @RequestMapping(method = RequestMethod.POST, /*headers = {"Content-type=application/json"},*/ consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void createJobSheet(@Valid @RequestBody JobSheet jobSheet) {
-        jobSheetService.createJobSheet(jobSheet);
+        //jobSheetService.createJobSheet(jobSheet);
     }
 
     @PutMapping("/{id}")
@@ -83,5 +99,10 @@ public class JobSheetController {
     @DeleteMapping("/{id}")
     public void deleteJobSheetById(@PathVariable("id") Long id) throws Exception {
         jobSheetService.deleteJobSheetById(id);
+    }
+    
+    @PostMapping("/insert")
+    public JobSheet insertJobSheet(@RequestBody JobSheet jobSheet) {
+    	return adapter.insertJobSheet(jobSheet);
     }
 }

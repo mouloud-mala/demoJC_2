@@ -1,5 +1,6 @@
 package com.demo.prjspring.service;
 
+import com.demo.prjspring.entity.JobSheetEntity;
 import com.demo.prjspring.pojo.JobSheet;
 import com.demo.prjspring.pojo.Skill;
 import com.demo.prjspring.repository.JobSheetRepository;
@@ -98,18 +99,22 @@ public class JobSheetService {
     }
 
 
-    public JobSheet createJobSheet(JobSheet jobSheet) {
-        log.info("Called for add a JobSheet ...");
-        List<Skill> skillList = new ArrayList<>();
-        Skill jobSheetSkill = new Skill();
-        skillList.add(jobSheetSkill);
-        jobSheet.setSkillList(skillList);
-
-        List<Skill> skillFromDB = extractSKill(jobSheet.getSkillList(), skillService.getAllSkillsStream());
-        jobSheet.getSkillList().removeAll(jobSheet.getSkillList());
-        jobSheet.setSkillList(skillFromDB);
-
-        return jobSheetRepository.save(jobSheet);
+    public JobSheetEntity createJobSheet(JobSheetEntity entity) {
+    	
+    	
+    	
+//        log.info("Called for add a JobSheet ...");
+//        List<Skill> skillList = new ArrayList<>();
+//        Skill jobSheetSkill = new Skill();
+//        skillList.add(jobSheetSkill);
+//        jobSheet.setSkillList(skillList);
+//
+//        List<Skill> skillFromDB = extractSKill(jobSheet.getSkillList(), skillService.getAllSkillsStream());
+//        jobSheet.getSkillList().removeAll(jobSheet.getSkillList());
+//        jobSheet.setSkillList(skillFromDB);
+//
+//        return jobSheetRepository.save(jobSheet);
+    	return null;
     }
 
     // methode pour mettre a jour la liste de competences
@@ -170,5 +175,10 @@ public class JobSheetService {
         List<JobSheet> jobSheetList =jobSheetRepository.findByRecruiter(author);
         return jobSheetList;
     }*/
-
+    
+    public JobSheetEntity insertJobSheet(JobSheetEntity entity) {
+    	
+    	
+    	return null;
+    }
 }
