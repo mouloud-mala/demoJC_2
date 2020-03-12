@@ -1,43 +1,29 @@
 package com.demo.prjspring.pojo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
+import javax.persistence.Table;
 import java.util.List;
 
 // @Data permet la mise en place automatique des constructeurs et des getteurs setteurs
 @Data
-@Entity
+@Component
 @Table(name = "JOBSHEET")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
-public class JobSheet implements Serializable {
+public class JobSheet {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "JOBSHEET_ID", updatable = false, nullable = false)
     private long idJobSheet;
 
     private String title;
 
     private String description;
 
-    /*@ManyToOne
-    private Recruiter author = new Recruiter();*/
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "JOBSHEET_SKILL", joinColumns = @JoinColumn(name = "JOBSHEET_ID"), inverseJoinColumns = @JoinColumn(name = "SKILL_ID"))
-    @JsonProperty("skillList")
     private List<Skill> skillList;
 
     /*public List<String> getSkillsList() {

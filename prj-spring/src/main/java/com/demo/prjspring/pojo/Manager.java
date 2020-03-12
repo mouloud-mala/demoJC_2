@@ -3,6 +3,7 @@ package com.demo.prjspring.pojo;
 import lombok.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,17 +13,12 @@ import java.io.Serializable;
 
 // @Data permet la mise en place automatique des constructeurs et des getteurs setteurs
 @Data
-@Entity
+@Component
 @NoArgsConstructor
 // a retirer pour spring security
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
-public class Manager implements Serializable {
+public class Manager {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idManager;
 
     private String lastName;
@@ -56,9 +52,9 @@ public class Manager implements Serializable {
         }
     }*/
 
-    public String getPassword() {
+    /*public String getPassword() {
         return this.password;
-    }
+    }*/
 
     public Manager(Manager updateCustomer, HttpHeaders httpHeaders, HttpStatus ok) {
     }

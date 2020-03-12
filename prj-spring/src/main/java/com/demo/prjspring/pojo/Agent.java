@@ -1,27 +1,19 @@
 package com.demo.prjspring.pojo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
 // @Data permet la mise en place automatique des constructeurs et des getteurs setteurs
 @Data
-@Entity
-@NoArgsConstructor
+@Component
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString(of = {"lastName", "firstName", "mail", "password", "address", "city", "country", "skillList"})
-public class Agent implements Serializable {
+@NoArgsConstructor
+public class Agent {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAgent;
 
     private String lastName;

@@ -1,10 +1,8 @@
 package com.demo.prjspring.Mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-
 import com.demo.prjspring.pojo.Agent;
-import com.demo.prjspring.pojo.AgentEntity;
+import com.demo.prjspring.entity.AgentEntity;
 
 @Mapper(componentModel = "spring")
 public interface AgentMapper {
