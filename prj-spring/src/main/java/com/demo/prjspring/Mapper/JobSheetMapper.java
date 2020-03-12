@@ -7,8 +7,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface JobSheetMapper {
 	
-	JobSheet JobSheetEntityToJobSheet(JobSheetEntity entity);
+	JobSheet jobSheetEntityToJobSheet(JobSheetEntity entity);
 	
-	JobSheetEntity JobSheetToJobSheetEntity(JobSheet jobSheet);
+	JobSheetEntity jobSheetToJobSheetEntity(JobSheet jobSheet);
 
 }

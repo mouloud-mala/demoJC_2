@@ -31,7 +31,7 @@ public class JobSheetEntity implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "JOBSHEET_SKILL", joinColumns = @JoinColumn(name = "JOBSHEET_ID"), inverseJoinColumns = @JoinColumn(name = "SKILL_ID"))
     @JsonProperty("skillList")
-    private List<Skill> skillList;
+    private List<SkillEntity> skillList;
 
     /*public List<String> getSkillsList() {
         if (this.skills.length() > 0) {

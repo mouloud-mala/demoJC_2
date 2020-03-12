@@ -7,8 +7,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ManagerMapper {
 
-    Manager ManagerEntityToManager(ManagerEntity entity);
+    Manager managerEntityToManager(ManagerEntity entity);
 
-    ManagerEntity ManagerToManagerEntity(Manager manager);
+    ManagerEntity managerToManagerEntity(Manager manager);
 
 }
