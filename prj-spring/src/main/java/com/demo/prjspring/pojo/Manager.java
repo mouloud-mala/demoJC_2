@@ -9,16 +9,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import java.io.Serializable;
 
 // @Data permet la mise en place automatique des constructeurs et des getteurs setteurs
 @Data
-@Component
+@Entity
+@Table(name = "MANAGER")
 @NoArgsConstructor
 // a retirer pour spring security
 @AllArgsConstructor
-public class Manager {
+public class Manager  implements Serializable{
 
+	private static final long serialVersionUID = 2313604297206753974L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idManager;
 
     private String lastName;
